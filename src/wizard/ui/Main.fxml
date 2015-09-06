@@ -44,7 +44,7 @@
    <left>
       <VBox prefHeight="369.0" prefWidth="149.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="159.0" text="Status" />
+            <Button fx:id="broadcastButton" mnemonicParsing="false" onAction="#broadcastButtonClick" prefHeight="25.0" prefWidth="159.0" text="Connect" />
          </children>
       </VBox>
    </left>

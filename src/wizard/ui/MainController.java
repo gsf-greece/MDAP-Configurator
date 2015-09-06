@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 import javafx.event.ActionEvent;
@@ -21,10 +22,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import wizard.mdap.client.Client;
 import wizard.mdap.server.Server;
 
@@ -37,6 +37,8 @@ public class MainController implements Initializable {
         
     private Client client;
     private Server server;
+    @FXML
+    private Button broadcastButton;
            
     
     static {
@@ -76,8 +78,17 @@ public class MainController implements Initializable {
         openNewDialog("preferences/Preferences.fxml");
     }        
     
-    private void connectTest() {
-        //client = new Client();
+    @FXML
+    private void broadcastButtonClick(ActionEvent event) throws IOException {
+        broadcastButton.setDisable(true);
+        server = new Server();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            LogManager.getLogger().error(ex);
+        }
+        client = new Client();
+        client.connect("username", "password");        
         //if (passwordInput != null && usernameInput != null) {
         //    client.connect(usernameInput.getText(), passwordInput.getText());
         //}       
